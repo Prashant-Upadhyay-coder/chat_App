@@ -1,2 +1,2 @@
 # chat_App
-![Logo](projectpreview/images/Screenshot (8).png)
+![App Screenshot](projectpreview/images/Screenshot%20(8).png)
