@@ -1,0 +1,127 @@
+.chat-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+
+/* Messages take available space above input */
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Fixed bottom input area */
+.input-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+  border-top: 1px solid #ddd;
+  background: #fafafa;
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+}
+
+.msg-input {
+  flex-grow: 1;
+}
+
+/* Reply box stays above input and doesn’t push it */
+.replying-box {
+  position: sticky;
+  bottom: 56px; /* height of input-section */
+  background: #f2dbff;
+  border-left: 4px solid #61298c;
+  padding: 8px 12px;
+  margin: 0 10px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  animation: fadeIn 0.2s ease-in;
+  z-index: 9;
+}
+
+.reply-text {
+  flex: 1;
+  margin-right: 8px;
+  overflow: hidden;
+}
+
+.reply-to-header {
+  font-size: 13px;
+  font-weight: 600;
+  color: #612a8b;
+}
+.reply-preview {
+     background: #662c9247;
+    color: #000;
+    border-radius: 4px;
+    padding: 4px 4px;
+    border-left: 2px solid #662c92;;
+ padding: 4px 4px;
+}
+.reply-to-message {
+  font-size: 13px;
+  color: #444;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Messages UI */
+.message {
+  padding: 8px 12px;
+  border-radius: 10px;
+  max-width: 60%;
+  word-wrap: break-word;
+}
+
+.sender {
+  background: #e8e8e8;
+  align-self: flex-end;
+}
+
+.receiver {
+  background: #e2cdee;
+  color: white;
+  align-self: flex-start;
+}
+
+.meta {
+  font-size: 12px;
+  color: #888;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4px;
+}
+.form-control:focus {
+    color: var(--bs-body-color);
+    background-color: var(--bs-body-bg);
+    border-color: #e4c7fb;
+    outline: 0;
+    box-shadow: 0 0 0 .25rem #e4c7fb;;
+}
+.message  mat-icon{
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+

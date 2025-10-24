@@ -1,0 +1,82 @@
+<div class="container">
+  <mat-card class="example-card">
+    <mat-card-content>
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-4 text-center">
+          <img src="assets/images/logo/logo.png" alt="logo" width="60" height="60" />
+          <h4 style="color:#511b73;">ChatApp</h4>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-12 col-lg-8 text-center">
+          <mat-card-title class="mb-4">Register</mat-card-title>
+
+          <form [formGroup]="registerForm" (ngSubmit)="submit()">
+            <div class="row">
+              <div class="col-12 mb-1">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-label>Username</mat-label>
+                  <input matInput type="text" placeholder="Enter Username" formControlName="username" />
+
+                  @if (f['username'].touched && f['username'].invalid) {
+                  <mat-error>
+                    @if (f['username'].errors?.['required']) {
+                    Username is required
+                    }
+                    @else if (f['username'].errors?.['minlength']) {
+                    Username must be at least
+                    {{ f['username'].errors?.['minlength'].requiredLength }} characters
+                    }
+                  </mat-error>
+                  }
+                </mat-form-field>
+              </div>
+              <div class="col-12 mb-1">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-label>Email</mat-label>
+                  <input matInput type="email" placeholder="ex:prashant@gmail.com" formControlName="email" />
+                  @if (f['email'].touched && f['email'].invalid) {
+                  <mat-error>
+                    @if (f['email'].errors?.['required']) {
+                    email is required
+                    }
+                    @else if (f['email'].errors?.['email']) {
+                    please enter valid Email Address
+
+                    }
+                  </mat-error>
+                  }
+                </mat-form-field>
+              </div>
+              <div class="col-12 mb-1">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-label>Password</mat-label>
+                  <input matInput type="password" placeholder="Enter Password" formControlName="password" />
+                  @if (f['password'].touched && f['password'].invalid) {
+                  <mat-error>
+                    @if (f['password'].errors?.['required']) {
+                    Password is required
+                    }
+                    @else if (f['password'].errors?.['minlength']) {
+
+                    Password must be at least
+                    {{ f['password'].errors?.['minlength'].requiredLength }} characters
+
+                    }
+                  </mat-error>
+                  }
+                </mat-form-field>
+              </div>
+              @if (error) {
+              <div class="error text-danger text-center mt-2">{{ error }}</div>
+              }
+              <div class="col-12 text-center mb-2">
+                <button mat-flat-button color="primary" type="submit">Register</button>
+              </div>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,103 @@
+<div class="chat-container">
+  <!-- Toolbar -->
+  <mat-toolbar>
+    <mat-chip-set>
+      <mat-chip>
+        <img matChipAvatar src="assets/images/users/user-1.jpg" alt="User" />
+        {{ otherUsername() }}
+      </mat-chip>
+    </mat-chip-set>
+    <span class="example-spacer"></span>
+  </mat-toolbar>
+
+  <!-- Messages -->
+  <div class="messages">
+
+    @for (m of messages; track m) {
+
+    <div class="message" [ngClass]="{
+      'sender': m.senderId === meId,
+      'receiver': m.senderId !== meId,
+      'deleted': m.deleted
+    }">
+
+      @if (m.replyTo) {
+      <div class="reply-preview small">
+        <div class="reply-text">
+          {{ m.replyTo.deleted ? 'This message was deleted' : m.replyTo.content }}
+        </div>
+      </div>
+      }
+
+      <div>{{ m.deleted ? 'This message was deleted' : m.content }}</div>
+
+      <div class="meta">
+        <span>{{ m.createdAt | date: 'short' }}</span>
+        @if (m.senderId === meId) {
+        <mat-icon [color]="m.seen ? 'primary' : ''">
+          {{ m.seen ? 'done_all' : 'done' }}
+        </mat-icon>
+        }
+      </div>
+      <div class="actions">
+        @if (!m.deleted) {
+        <button mat-icon-button (click)="replyMessage(m)" title="Reply">
+          <mat-icon>reply</mat-icon>
+        </button>
+        @if (m.senderId === meId) {
+        <button mat-icon-button (click)="editMessage(m)" title="Edit">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button (click)="deleteMessage(m)" title="Delete">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <mat-icon [matMenuTriggerFor]="menu">add_reaction</mat-icon>
+
+        <mat-menu #menu="matMenu">
+          <div class="reaction-dropdown">
+            @for(emoji of emojisIcon; track emoji){
+            <button mat-menu-item (click)="reactToMessage(m, emoji)">
+              {{ emoji }}
+            </button>
+            }
+
+          </div>
+
+        </mat-menu>
+
+        }
+          @if(m.reaction){
+        <span class="selected">{{ m.reaction }}</span>
+        }
+        }
+      </div>
+
+    </div>
+    }
+  </div>
+
+  <!-- Reply Preview (above input) -->
+  <div *ngIf="replyingTo" class="replying-box">
+    <div class="reply-text">
+      <div class="reply-to-header">Reply</div>
+      <div class="reply-to-message">
+        {{ replyingTo.deleted ? 'This message was deleted' : replyingTo.content }}
+      </div>
+    </div>
+    <button mat-icon-button (click)="cancelReply()" title="Cancel Reply">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <!-- Input Section (fixed bottom) -->
+  <div class="input-section">
+
+    <input class="form-control form-control-lg" [(ngModel)]="text" (keyup.enter)="send()"
+      placeholder="Type a message..." />
+
+
+    <button mat-mini-fab color="primary" (click)="send()">
+      <mat-icon>send</mat-icon>
+    </button>
+  </div>
+</div>

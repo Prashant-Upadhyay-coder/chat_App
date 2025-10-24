@@ -1,0 +1,19 @@
+.page-container {
+  height: 100vh;
+  overflow: hidden;
+}
+
+users-component {
+  display: block;
+  height: 100%;
+  overflow-y: auto;
+}
+
+
+
+@media (max-width: 768px) {
+  .border-end {
+    border-right: none !important;
+    border-bottom: 1px solid #ddd;
+  }
+}

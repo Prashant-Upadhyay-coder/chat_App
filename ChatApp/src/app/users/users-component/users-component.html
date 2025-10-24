@@ -1,0 +1,40 @@
+<mat-toolbar>
+  <img src="assets/images/logo/logo.png" alt="logo" width="35" height="35" />
+  <span style="color:#511b73;">ChatApp</span>
+
+  <span class="example-spacer"></span>
+  <mat-chip-set aria-label="user Profile">
+  <mat-chip [matMenuTriggerFor]="menu">
+    <img
+      matChipAvatar
+      src="assets/images/users/user-1.jpg"
+      alt="Photo of a Shiba Inu"
+    />
+    {{ username() }}
+  </mat-chip>
+</mat-chip-set>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item (click)="logout()">Logout  <mat-icon>logout</mat-icon> </button>
+</mat-menu>
+
+</mat-toolbar>
+<mat-tab-group fitInkBarToContent>
+  <mat-tab label="Chats">
+
+    <mat-list>
+      @for (u of users; track u) {
+      <mat-list-item (click)="openChat(u)">
+        <mat-icon matListItemIcon>account_circle</mat-icon>
+        <div matListItemTitle>{{u.username}}</div>
+        <!-- <div matListItemLine>{{'12-13-2025' | date}}</div> -->
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      }
+
+    </mat-list>
+
+
+
+  </mat-tab>
+  <mat-tab label="story"></mat-tab>
+</mat-tab-group>

@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  justify-content: center; /* centers horizontally */
+  align-items: center; /* centers vertically */
+  height: 100vh; /* full viewport height */
+  width: 100vw;  /* full viewport width */
+  background-color: #f8f9fa; /* optional: light gray background */
+}
+
+.example-card {
+  width: 50vw;
+  padding: 20px;
+}
+.example-full-width {
+  width: 100%;
+}
